@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day13-task</title>
+</head>
+<body>
+    <script>
+        function frequencySort(s) {
+  const frequencyMap = {};
+  
+  // Step 1: Calculate the frequency of each character
+  for (let char of s) {
+    frequencyMap[char] = (frequencyMap[char] || 0) + 1;
+  }
+
+  // Step 2: Sort the characters based on frequency and specified conditions
+  const sortedChars = Object.keys(frequencyMap).sort((a, b) => {
+    const freqDiff = frequencyMap[b] - frequencyMap[a];
+    if (freqDiff === 0) {
+      if (a.toUpperCase() === b.toUpperCase()) {
+        return a.localeCompare(b);
+      }
+      return a.toUpperCase() < b.toUpperCase() ? -1 : 1;
+    }
+    return freqDiff;
+  });
+
+  // Step 3: Build the resulting string
+  let result = '';
+  for (let char of sortedChars) {
+    const frequency = frequencyMap[char];
+    result += char.repeat(frequency);
+  }
+
+  return result;
+}
+
+const inputString = "tree";
+console.log(frequencySort(inputString)); 
+
+    </script>
+    
+</body>
+</html>

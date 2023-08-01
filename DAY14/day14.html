@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day14-task</title>
+</head>
+<body>
+    <script>
+        function lookAndSay(start, n) {
+  function getNextTerm(term) {
+    let result = '';
+    let count = 1;
+
+    for (let i = 0; i < term.length; i++) {
+      if (term[i] === term[i + 1]) {
+        count++;
+      } else {
+        result += count.toString() + term[i];
+        count = 1;
+      }
+    }
+
+    return result;
+  }
+
+  const sequence = [start.toString()];
+
+  for (let i = 1; i < n; i++) {
+    const nextTerm = getNextTerm(sequence[i - 1]);
+    sequence.push(nextTerm);
+  }
+
+  return sequence.map(Number);
+}
+
+
+const startValue = 1;
+const numberOfTerms = 7;
+console.log(lookAndSay(startValue, numberOfTerms));
+
+    </script>
+    
+</body>
+</html>
